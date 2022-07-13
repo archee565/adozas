@@ -30,8 +30,8 @@ def atalany(bevetel):
     mentesitett = minimalber_brutto*12/2
     adoalap = (1-koltseghanyad)*bevetel
     szja = max( (adoalap-mentesitett)*0.15,0)
-    tbj = max(adoalap*0.185,berminimum_brutto*12*0.185)
-    szocho = max(min(adoalap*0.13,628000),berminimum_brutto*12*1.125*0.13)
+    tbj = max( (adoalap-mentesitett)*0.185,berminimum_brutto*12*0.185)
+    szocho = max(min( (adoalap-mentesitett)*0.13,628000),berminimum_brutto*12*1.125*0.13)
     ipa = adoalap*1.2*0.02
     if bevetel>12*10*200000:
         return bevetel
