@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 
 # forrasok:
 # https://www.hypercortex.hu/atalanyadozas-ujratoltve-2022/
-
+# https://optitax.hu/adooptimalizalas/2022-es-minimalber-es-garantalt-berminimum
+# https://konyvelescentrum.hu/adok-es-jarulekok-kozterhek/egyeni-vallalkozo-adozasanak-osszehasonlitasa-kata-versus-szja/  <- 2021, már nem teljesen aktuális!
 
 def szjaado(bevetel):
     egyebkoltseg = 0
