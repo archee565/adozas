@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 def szjaado(bevetel):
     egyebkoltseg = 0
-    ugyvezeto_brutto = 12*200000
+    ugyvezeto_brutto = 12*260000 # berminimum
     ugyvezeto_superbrutto = ugyvezeto_brutto*1.13
     ugyvezeto_netto = ugyvezeto_brutto*133/200
     ugyvezetoado = ugyvezeto_superbrutto - ugyvezeto_netto
@@ -23,13 +23,14 @@ def szjaado(bevetel):
 
 
 def atalany(bevetel):
+    berminimum_brutto = 260000
     minimalber_brutto = 200000
     koltseghanyad = 0.4
     mentesitett = minimalber_brutto*12/2
     adoalap = (1-koltseghanyad)*bevetel
     szja = max( (adoalap-mentesitett)*0.15,0)
-    tbj = max(adoalap*0.185,minimalber_brutto*0.185)
-    szocho = max(min(adoalap*0.13,628000),minimalber_brutto*1.125*0.13)
+    tbj = max(adoalap*0.185,berminimum_brutto*12*0.185)
+    szocho = max(min(adoalap*0.13,628000),berminimum_brutto*12*1.125*0.13)
     ipa = adoalap*1.2*0.02
     if bevetel>12*10*200000:
         return bevetel
