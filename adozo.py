@@ -2,9 +2,9 @@
 import matplotlib.pyplot as plt
 
 # forrasok:
-# https://www.hypercortex.hu/atalanyadozas-ujratoltve-2022/
 # https://optitax.hu/adooptimalizalas/2022-es-minimalber-es-garantalt-berminimum
 # https://konyvelescentrum.hu/adok-es-jarulekok-kozterhek/egyeni-vallalkozo-adozasanak-osszehasonlitasa-kata-versus-szja/  <- 2021, már nem teljesen aktuális!
+# https://www.hypercortex.hu/atalanyadozas-ujratoltve-2022/
 
 
 berminimum_brutto = 260000
@@ -44,6 +44,8 @@ def atalany(bevetel):
     else:
         return szja+tbj+szocho+ipa
 
+
+#  forras wikipedia
 def nemet_szja(x):
     if (x<10347):
          return 0
@@ -65,6 +67,7 @@ def nemet(bevetel):
     return gewerbesteuer + nemet_szja(szja_alap) + egeszseg_biztositas
 
 
+# forras https://www.expatica.com/es/finance/taxes/freelance-tax-spain-471615/#socialsecurity
 def spanyol(bevetel):
     a = bevetel
     b = min(a,12450)
@@ -87,6 +90,7 @@ def spanyol(bevetel):
     return tax+socialpago
 
 
+# forras https://www.expatica.com/pt/finance/taxes/self-employment-freelance-and-corporate-tax-in-portugal-1092039/#system
 def portugal(bevetel):
     caps = [7116,10736,15216,19696,25076,36757,48033,75009,1e30]
     rates = [0.145,0.23,0.265,0.285,0.35,0.37,0.435,0.45,0.48]
@@ -99,8 +103,6 @@ def portugal(bevetel):
     seguro_social = bevetel*0.214
     return tax + seguro_social
     
-
-portugal(60000)
   
 cx = []
 cy_szja = []
