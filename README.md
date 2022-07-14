@@ -1,2 +1,3 @@
 # adozas
-TAO+SZJA vagy Átalányadózó leszel
+Egyéni vállalkozó TAO+SZJA,  atalányadózó és külföldi egyéni vállalkozók összehasonlítása.
+
