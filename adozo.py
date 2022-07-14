@@ -44,6 +44,10 @@ def atalany(bevetel):
     else:
         return szja+tbj+szocho+ipa
 
+def kata(bevetel):
+    bunteto = 0.4 * max(0,bevetel-18e6)
+    return bunteto + 50000 + 12*50000  # IPA es SZJA KATA
+
 
 #  forras wikipedia
 def nemet_szja(x):
@@ -102,34 +106,51 @@ def portugal(bevetel):
         a-=b
     seguro_social = bevetel*0.214
     return tax + seguro_social
-    
+
+
+# forras https://www.czechmobility.info/en/topics/status-of-the-artist/status-of-the-artist-in-the-czech-republic/self-employed-person
+def cseh(bevetel):
+    social = 12*(1906+115+2061)
+    if (bevetel<67756):
+        social = 0
+    return social + bevetel*0.15
+
+
   
 cx = []
 cy_szja = []
 cy_atalany = []
+cy_kata = []
 cy_nemet = []
 cy_spanyol = []
 cy_portugal = []
+cy_cseh = []
 
 for x in range(1,1000):
-    bevetel = 1 + 26*1e6*(x/1000)
+    bevetel = 1 + 50*1e6*(x/1000)
     beveteleur = bevetel/400
+    bevetel_czk = bevetel/16.6
     cx.append(bevetel/1e6)
     cy_szja.append(szjaado(bevetel)/bevetel*100)
     cy_atalany.append(  atalany(bevetel)/bevetel * 100 )
+    cy_kata.append(  kata(bevetel)/bevetel * 100 )
     cy_nemet.append( nemet(beveteleur) / beveteleur * 100 )
     cy_spanyol.append( spanyol(beveteleur) / beveteleur * 100 )
     cy_portugal.append( portugal(beveteleur) / beveteleur * 100 )
+    cy_cseh.append( cseh(bevetel_czk) / bevetel_czk * 100 )
 
 
-plt.plot(cx, cy_szja,label='szja')
-plt.plot(cx, cy_atalany,label="atalany")
+plt.plot(cx, cy_szja,label='szja',linestyle='dashed',)
+plt.plot(cx, cy_atalany,label="atalany",linestyle='dashed',)
+plt.plot(cx, cy_kata,label="KATA sok ügyfél",linestyle='dashed',)
 plt.plot(cx, cy_nemet,label="nemet")
 plt.plot(cx, cy_spanyol,label="spanyol")
-plt.plot(cx, cy_portugal,label="portugal")
+plt.plot(cx, cy_portugal,label="portugalia")
+plt.plot(cx, cy_cseh,label="csehia")
 
 plt.legend(loc='upper center', shadow=True, fontsize='medium')
-plt.ylim([0, 100])
+plt.ylim([0, 102])
+plt.xlim([0, 28])
 plt.xlabel('éves bevetel (millio HUF)')
 plt.ylabel('ado%')
 plt.title('TAO+SZJA vs átalány')
