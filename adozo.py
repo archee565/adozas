@@ -128,8 +128,7 @@ plt.plot(cx, cy_nemet,label="nemet")
 plt.plot(cx, cy_spanyol,label="spanyol")
 plt.plot(cx, cy_portugal,label="portugal")
 
-legend = plt.legend(loc='upper center', shadow=True, fontsize='medium')
-
+plt.legend(loc='upper center', shadow=True, fontsize='medium')
 plt.ylim([0, 100])
 plt.xlabel('éves bevetel (millio HUF)')
 plt.ylabel('ado%')
