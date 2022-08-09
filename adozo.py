@@ -35,9 +35,9 @@ def atalany(bevetel):
     adoalap = (1-koltseghanyad)*bevetel
     szja = max( (adoalap-mentesitett)*0.15,0)
     tbj = max( (adoalap-mentesitett)*0.185,berminimum_brutto*12*0.185)
-    szocho_alap_felso_korlat = minimalber_brutto*24
-    szocho = max(min( (adoalap-mentesitett),szocho_alap_felso_korlat),berminimum_brutto*12*1.125)*0.13
-#    szocho = max( (adoalap-mentesitett),berminimum_brutto*12*1.125)*0.13
+#    szocho_alap_felso_korlat = minimalber_brutto*24
+#    szocho = max(min( (adoalap-mentesitett),szocho_alap_felso_korlat),berminimum_brutto*12*1.125)*0.13
+    szocho = max( (adoalap-mentesitett),berminimum_brutto*12*1.125)*0.13
     ipa = adoalap*1.2*0.02
     if bevetel>12*10*200000:
         return bevetel
@@ -109,6 +109,7 @@ def portugal(bevetel):
 
 
 # forras https://www.czechmobility.info/en/topics/status-of-the-artist/status-of-the-artist-in-the-czech-republic/self-employed-person
+# valószínűleg téves a cseh: 
 def cseh(bevetel):
     social = 12*(1906+115+2061)
     if (bevetel<67756):
@@ -140,13 +141,13 @@ for x in range(1,1000):
     cy_cseh.append( cseh(bevetel_czk) / bevetel_czk * 100 )
 
 
-plt.plot(cx, cy_szja,label='szja',linestyle='dashed',)
-plt.plot(cx, cy_atalany,label="atalany",linestyle='dashed',)
+plt.plot(cx, cy_szja,label='TAO+SZJA',linestyle='dashed',)
+plt.plot(cx, cy_atalany,label="átalany",linestyle='dashed',)
 plt.plot(cx, cy_kata,label="KATA sok ügyfél",linestyle='dashed',)
 plt.plot(cx, cy_nemet,label="nemet")
 plt.plot(cx, cy_spanyol,label="spanyol")
 plt.plot(cx, cy_portugal,label="portugalia")
-plt.plot(cx, cy_cseh,label="csehia")
+#plt.plot(cx, cy_cseh,label="csehia")
 
 plt.legend(loc='upper center', shadow=True, fontsize='medium')
 plt.ylim([0, 102])
