@@ -7,8 +7,10 @@ import matplotlib.pyplot as plt
 # https://www.hypercortex.hu/atalanyadozas-ujratoltve-2022/
 
 
-berminimum_brutto = 260000
-minimalber_brutto = 200000
+berminimum_brutto = 296400
+minimalber_brutto = 232000
+huf_to_eur = 400
+max_income = 30 # million HUF
 
 
 def szjaado(bevetel):
@@ -39,7 +41,7 @@ def atalany(bevetel):
 #    szocho = max(min( (adoalap-mentesitett),szocho_alap_felso_korlat),berminimum_brutto*12*1.125)*0.13
     szocho = max( (adoalap-mentesitett),berminimum_brutto*12*1.125)*0.13
     ipa = adoalap*1.2*0.02
-    if bevetel>12*10*200000:
+    if bevetel>12*10*minimalber_brutto:
         return bevetel
     else:
         return szja+tbj+szocho+ipa
@@ -128,8 +130,8 @@ cy_portugal = []
 cy_cseh = []
 
 for x in range(1,1000):
-    bevetel = 1 + 50*1e6*(x/1000)
-    beveteleur = bevetel/400
+    bevetel = 1 + max_income*1e6*(x/1000)
+    beveteleur = bevetel/huf_to_eur
     bevetel_czk = bevetel/16.6
     cx.append(bevetel/1e6)
     cy_szja.append(szjaado(bevetel)/bevetel*100)
@@ -144,14 +146,14 @@ for x in range(1,1000):
 plt.plot(cx, cy_szja,label='TAO+SZJA',linestyle='dashed',)
 plt.plot(cx, cy_atalany,label="átalany",linestyle='dashed',)
 plt.plot(cx, cy_kata,label="KATA sok ügyfél",linestyle='dashed',)
-plt.plot(cx, cy_nemet,label="nemet")
-plt.plot(cx, cy_spanyol,label="spanyol")
-plt.plot(cx, cy_portugal,label="portugalia")
+plt.plot(cx, cy_nemet,label="Germany")
+plt.plot(cx, cy_spanyol,label="Spain")
+plt.plot(cx, cy_portugal,label="Portugalia")
 #plt.plot(cx, cy_cseh,label="csehia")
 
 plt.legend(loc='upper center', shadow=True, fontsize='medium')
 plt.ylim([0, 102])
-plt.xlim([0, 28])
+plt.xlim([0, max_income])
 plt.xlabel('éves bevetel (millio HUF)')
 plt.ylabel('ado%')
 plt.title('TAO+SZJA vs átalány')
